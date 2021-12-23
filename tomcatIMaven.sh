@@ -1,7 +1,7 @@
 #!/bin/bash
 
-read -p "Input name user: " NAME
-USERNAME = $NAME/TomcatIMaven
+read -p "Input name user: " USERNAME
+cd /home/$USERNAME
 
 sudo apt-get update -y
 
