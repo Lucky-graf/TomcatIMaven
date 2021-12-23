@@ -1,0 +1,2 @@
+Move to download folder: cd TomcatMav
+Use command for run scrip: sudo bash ./tomcatIMaven.sh
