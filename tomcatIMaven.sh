@@ -1,9 +1,9 @@
-/!bin/bash
+#!/bin/bash
 
-read -p "Input name user: " USERNAME
+read -p "Input name user: " NAME
+USERNAME = $NAME/TomcatIMaven
 
 sudo apt-get update -y
-
 
 #Install MAVEN
 
@@ -33,7 +33,7 @@ sudo mv /home/$USERNAME/apache-tomcat-9.0.56/* /opt/tomcat/
 sudo chgrp -R tomcat /opt/tomcat
 sudo chmod -R g+r /opt/tomcat/conf
 sudo chmod g+x /opt/tomcat/conf
-sudo chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/
+sudo chown tomcat:tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/
 sudo systemctl daemon-reload
 
 sudo cat > /etc/systemd/system/tomcat.service << EOF
@@ -77,42 +77,7 @@ sudo cat > /opt/tomcat/conf/tomcat-users.xml << EOF
 <role rolename="manager-gui"/>
 <user username="admin" password="password" roles="manager-gui,admin-gui"/>
 </tomcat-users>
-EOF 
-
-
-
-
-
-
-sudo cat > /opt/tomcat/webapps/manager/META-INF/context.xml << EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<Context antiResourceLocking="false" privileged="true" >
-  <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor" sameSiteCookies="strict" />
-  <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve"
-         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
-  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
-</Context>
-
 EOF
-
-
-
 
 
 sudo cat > /opt/tomcat/webapps/host-manager/META-INF/context.xml << EOF
@@ -139,8 +104,9 @@ sudo cat > /opt/tomcat/webapps/host-manager/META-INF/context.xml << EOF
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
   <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
 </Context>
-
 EOF
+
+sudo cp /opt/tomcat/webapps/host-manager/META-INF/context.xml  /opt/tomcat/webapps/manager/META-INF/context.xml
 
 sudo systemctl daemon-reload
 sudo systemctl enable tomcat
@@ -160,6 +126,4 @@ echo "Open in web browser http://server_domain_or_IP:8080"
 echo "Login for APPManager: username=admin password=password"
 echo "______________________________________________________"
 echo ""
-echo "If don't work Maven? Than comlite this comand: sourse ~/.bashrc"
-
-
+echo "If don't work Maven? Than comlite this comand: source ~/.bashrc"
