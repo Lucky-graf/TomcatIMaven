@@ -126,4 +126,6 @@ echo "Open in web browser http://server_domain_or_IP:8080"
 echo "Login for APPManager: username=admin password=password"
 echo "______________________________________________________"
 echo ""
-echo "If don't work Maven? Than comlite this comand: source ~/.bashrc"
+mvn -v
+echo "If don't work Maven? Than You NEED run this comand:"
+echo "source ~/.bashrc"
