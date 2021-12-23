@@ -1,3 +1,3 @@
 Get script on your PC: nano tomcatIMaven.sh
-Mouve to code from tomcatMaven.sh:Ctrl+C and Ctrl+V 
+Mouve to code from tomcatMaven.sh:Ctrl+C and Ctrl+V  and Save (Ctrl+O Enter and Crtl+X Enter)
 Use command for run scrip: sudo bash tomcatIMaven.sh
