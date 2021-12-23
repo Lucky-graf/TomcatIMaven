@@ -1,3 +1,3 @@
-Get script on your PC: gitclone https://github.com/Lucky-graf/TomcatIMaven
+Get script on your PC: git clone https://github.com/Lucky-graf/TomcatIMaven
 Move to download folder: cd TomcatIMaven
 Use command for run scrip: sudo bash ./tomcatIMaven.sh
