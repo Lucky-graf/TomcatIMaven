@@ -1,9 +1,9 @@
 #!/bin/bash
 
 read -p "Input name user: " USERNAME
-cd /home/$USERNAME
 
 sudo apt-get update -y
+
 
 #Install MAVEN
 
